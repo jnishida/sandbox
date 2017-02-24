@@ -115,8 +115,8 @@ public class AssertUtilTest {
 	}
 
 	private Model1 model1() {
-		return new Model1("1111", "Ç†Ç†Ç†", model2(), Arrays.asList(model2()));
-	}
+		return new Model1("1111", "„ÅÇ„ÅÇ„ÅÇ", model2(), Arrays.asList(model2()));
+		}
 
 	private Model2 model2() {
 		return new Model2("field1", "field2", "field3");
