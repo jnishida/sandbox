@@ -107,7 +107,7 @@ public class AssertUtilTest {
 		Model1 expected = model1();
 		expected.getModel2List().get(0).setField3("diff");
 
-		AssertUtil.assertElement(actual, expected, "field3");
+		AssertUtil.assertElement(actual, expected, "field3"); 
 	}
 
 	private List<Model1> list() {
