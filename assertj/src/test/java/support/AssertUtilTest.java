@@ -8,7 +8,6 @@ import model.Model2;
 
 import org.junit.Test;
 
-
 public class AssertUtilTest {
 	public void testCollection1() throws Exception {
 		List<Model1> actual = null;
@@ -107,7 +106,7 @@ public class AssertUtilTest {
 		Model1 expected = model1();
 		expected.getModel2List().get(0).setField3("diff");
 
-		AssertUtil.assertElement(actual, expected, "field3"); 
+		AssertUtil.assertElement(actual, expected, "field3");
 	}
 
 	private List<Model1> list() {
@@ -116,7 +115,7 @@ public class AssertUtilTest {
 
 	private Model1 model1() {
 		return new Model1("1111", "あああ", model2(), Arrays.asList(model2()));
-		}
+	}
 
 	private Model2 model2() {
 		return new Model2("field1", "field2", "field3");
