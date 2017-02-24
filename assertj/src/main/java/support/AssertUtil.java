@@ -34,14 +34,14 @@ public final class AssertUtil {
 		assertThat(actual).isNotNull();
 		assertThat(expected).isNotNull();
 
-		for (Field field1 : getPrivateFields(actual)) {
+		for (Field field1 : privateFields(actual)) {
 			field1.setAccessible(true);
 
 			if (Arrays.asList(ignoreFields).contains(field1.getName())) {
 				continue;
 			}
 
-			Field field2 = getPrivateField(expected, field1.getName());
+			Field field2 = privateField(expected, field1.getName());
 			field2.setAccessible(true);
 
 			Object value1 = field1.get(actual);
@@ -70,11 +70,11 @@ public final class AssertUtil {
 		}
 	}
 
-	private static <E> Field[] getPrivateFields(E element) {
+	private static <E> Field[] privateFields(E element) {
 		return element.getClass().getDeclaredFields();
 	}
 
-	private static <E> Field getPrivateField(E element, String name) throws NoSuchFieldException {
+	private static <E> Field privateField(E element, String name) throws NoSuchFieldException {
 		return element.getClass().getDeclaredField(name);
 	}
 
