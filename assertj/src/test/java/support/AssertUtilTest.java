@@ -3,10 +3,10 @@ package support;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Test;
+
 import model.Model1;
 import model.Model2;
-
-import org.junit.Test;
 
 public class AssertUtilTest {
 	public void testCollection1() throws Exception {

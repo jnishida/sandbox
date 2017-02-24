@@ -52,7 +52,7 @@ public class Model1 {
 
 	@Override
 	public String toString() {
-		return String.format("Model1 [code=%s, model2List=%s, name=%s, toString()=%s]", code, model2List, name, super
-			.toString());
+		return String.format("Model1 [code=%s, model2List=%s, name=%s, toString()=%s]", code, model2List, name,
+			super.toString());
 	}
 }
