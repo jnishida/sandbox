@@ -35,14 +35,11 @@ public final class AssertUtil {
 		assertThat(expected).isNotNull();
 
 		for (Field field1 : RefrectionUtil.privateFields(actual)) {
-			field1.setAccessible(true);
-
 			if (Arrays.asList(ignoreFields).contains(field1.getName())) {
 				continue;
 			}
 
 			Field field2 = RefrectionUtil.privateField(expected, field1.getName());
-			field2.setAccessible(true);
 
 			Object value1 = field1.get(actual);
 			Object value2 = field2.get(expected);
