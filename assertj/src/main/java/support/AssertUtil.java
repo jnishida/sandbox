@@ -34,14 +34,14 @@ public final class AssertUtil {
 		assertThat(actual).isNotNull();
 		assertThat(expected).isNotNull();
 
-		for (Field field1 : privateFields(actual)) {
+		for (Field field1 : RefrectionUtil.privateFields(actual)) {
 			field1.setAccessible(true);
 
 			if (Arrays.asList(ignoreFields).contains(field1.getName())) {
 				continue;
 			}
 
-			Field field2 = privateField(expected, field1.getName());
+			Field field2 = RefrectionUtil.privateField(expected, field1.getName());
 			field2.setAccessible(true);
 
 			Object value1 = field1.get(actual);
@@ -52,30 +52,13 @@ public final class AssertUtil {
 				continue;
 			}
 
-			if (hasEqualsMethod(value1.getClass())) {
+			if (RefrectionUtil.hasEqualsMethod(value1.getClass())) {
 				assertThat(value1).isEqualTo(value2);
 				continue;
 			}
 
 			assertElement(value1, value2, ignoreFields);
 		}
-	}
-
-	private static boolean hasEqualsMethod(Class<? extends Object> class1) {
-		try {
-			class1.getDeclaredMethod("equals", Object.class);
-			return true;
-		} catch (NoSuchMethodException e) {
-			return false;
-		}
-	}
-
-	private static <E> Field[] privateFields(E element) {
-		return element.getClass().getDeclaredFields();
-	}
-
-	private static <E> Field privateField(E element, String name) throws NoSuchFieldException {
-		return element.getClass().getDeclaredField(name);
 	}
 
 	@SuppressWarnings("unchecked")
