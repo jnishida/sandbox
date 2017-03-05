@@ -1,8 +1,7 @@
 package schedule;
 
 import java.io.File;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,15 +24,11 @@ public class ScheduleTest {
 	private List<ScheduleOwner> owners() {
 		List<ScheduleOwner> owners = Arrays.asList(
 			new ScheduleOwner("A氏", Arrays.asList(
-				new Schedule(datetime(2017, 3, 1, 9, 00), datetime(2017, 3, 1, 0, 30)),
-				new Schedule(datetime(2017, 3, 1, 12, 12), datetime(2017, 3, 1, 12, 12)),
-				new Schedule(datetime(2017, 3, 1, 14, 05), datetime(2017, 3, 2, 9, 30)))),
+				new Schedule(LocalDateTime.of(2017, 3, 1, 9, 00), LocalDateTime.of(2017, 3, 1, 0, 30)),
+				new Schedule(LocalDateTime.of(2017, 3, 1, 12, 12), LocalDateTime.of(2017, 3, 1, 12, 12)),
+				new Schedule(LocalDateTime.of(2017, 3, 1, 14, 05), LocalDateTime.of(2017, 3, 2, 9, 30)))),
 			new ScheduleOwner(("B氏"), Arrays.asList(
-				new Schedule(datetime(2017, 3, 1, 16, 00), datetime(2017, 3, 2, 17, 30)))));
+				new Schedule(LocalDateTime.of(2017, 3, 1, 16, 00), LocalDateTime.of(2017, 3, 2, 17, 30)))));
 		return owners;
-	}
-
-	protected ZonedDateTime datetime(int year, int month, int day, int hour, int minutes) {
-		return ZonedDateTime.of(year, month, day, hour, minutes, 0, 0, ZoneId.systemDefault());
 	}
 }

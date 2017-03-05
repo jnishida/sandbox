@@ -1,9 +1,13 @@
 package schedule;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import common.MyLocalDateTimeDeserializer;
+import common.MyLocalDateTimeSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,8 +17,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Schedule {
 	@JsonProperty("start")
-	private ZonedDateTime start;
+	@JsonSerialize(using = MyLocalDateTimeSerializer.class)
+	@JsonDeserialize(using = MyLocalDateTimeDeserializer.class)
+	private LocalDateTime start;
 
 	@JsonProperty("end")
-	private ZonedDateTime end;
+	@JsonSerialize(using = MyLocalDateTimeSerializer.class)
+	@JsonDeserialize(using = MyLocalDateTimeDeserializer.class)
+	private LocalDateTime end;
 }
