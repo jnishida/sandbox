@@ -10,8 +10,8 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 public class MyLocalDateTimeSerializer extends JsonSerializer<LocalDateTime> {
 	@Override
-	public void serialize(LocalDateTime arg0, JsonGenerator generator, SerializerProvider provider)
+	public void serialize(LocalDateTime value, JsonGenerator generator, SerializerProvider provider)
 		throws IOException, JsonProcessingException {
-		generator.writeString(arg0.toString());
+		generator.writeString(value.toString());
 	}
 }
