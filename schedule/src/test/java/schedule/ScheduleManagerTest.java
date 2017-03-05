@@ -7,6 +7,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,23 +36,28 @@ public class ScheduleManagerTest {
 				new Schedule(LocalDateTime.of(2017, 3, 1, 8, 30), LocalDateTime.of(2017, 3, 1, 9, 00)),
 				new Schedule(LocalDateTime.of(2017, 3, 3, 17, 30), LocalDateTime.of(2017, 3, 3, 18, 00)));
 	}
-	
-	@Test
-	public void test() throws Exception{
-		File parent = new File("src/test/resources");
-		File src = new File(parent, "test1.json");
-		ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
-		@SuppressWarnings("unchecked")
-		Collection<ScheduleOwner> schedules = mapper.readValue(src, ArrayList.class);
-		ScheduleAccesser.setScheduleOwners(schedules);
-		
+	@Test
+	public void test() throws Exception {
+		ScheduleAccesser.setScheduleOwners(owners());
+
 		LocalDate from = LocalDate.parse("2017-03-01");
 		LocalDate to = LocalDate.parse("2017-03-03");
 		Collection<Schedule> freeTimeInSchedules = sut.findFreeTimeInSchedules(
-			sut.createTemporaryFreeTime(from, to), 
+			sut.createTemporaryFreeTime(from, to),
 			sut.getFreeTime(LocalDate.parse("2017-03-01"), LocalDate.parse("2017-03-03"), Duration.ofMinutes(120)));
 
 		System.out.println(freeTimeInSchedules);
+	}
+
+	private List<ScheduleOwner> owners() {
+		List<ScheduleOwner> owners = Arrays.asList(
+			new ScheduleOwner("A氏", Arrays.asList(
+				new Schedule(LocalDateTime.of(2017, 3, 1, 9, 00), LocalDateTime.of(2017, 3, 1, 0, 30)),
+				new Schedule(LocalDateTime.of(2017, 3, 1, 12, 12), LocalDateTime.of(2017, 3, 1, 12, 12)),
+				new Schedule(LocalDateTime.of(2017, 3, 1, 14, 05), LocalDateTime.of(2017, 3, 2, 9, 30)))),
+			new ScheduleOwner(("B氏"), Arrays.asList(
+				new Schedule(LocalDateTime.of(2017, 3, 1, 16, 00), LocalDateTime.of(2017, 3, 2, 17, 30)))));
+		return owners;
 	}
 }
