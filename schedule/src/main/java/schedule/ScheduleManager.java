@@ -16,14 +16,20 @@ public class ScheduleManager {
 		return findFreeTimeInSchedules(temporaryFreeTime, schedules);
 	}
 
-	private Collection<Schedule> findFreeTimeInSchedules(Collection<Schedule> temporaryFreeTime,
+	Collection<Schedule> findFreeTimeInSchedules(Collection<Schedule> temporaryFreeTime,
 		Collection<Schedule> schedules) {
-		throw new UnsupportedOperationException("未実装");
+		for (Schedule schedule : schedules) {
+			if (temporaryFreeTime.contains(schedule)){
+				temporaryFreeTime.remove(schedule);
+			}
+		}
+		return temporaryFreeTime;
 	}
 
 	private Collection<Schedule> getSchedules(LocalDate from, LocalDate to, String... names) {
 		Collection<Schedule> schedules = new HashSet<Schedule>();
-		for (ScheduleOwner scheduleOwner : getScheduleOwners()) {
+		Collection<ScheduleOwner> scheduleOwners = getScheduleOwners();
+		for (ScheduleOwner scheduleOwner : scheduleOwners) {
 			for (Schedule schedule : scheduleOwner.getScheduleList()) {
 				schedules.addAll(schedule.innerUnits());
 				continue;
@@ -33,7 +39,7 @@ public class ScheduleManager {
 	}
 
 	private Collection<ScheduleOwner> getScheduleOwners() {
-		return new ScheduleAccesser().getScheduleOwners();
+		return ScheduleAccesser.getScheduleOwners();
 	}
 
 	Collection<Schedule> createTemporaryFreeTime(LocalDate from, LocalDate to) {

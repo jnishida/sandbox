@@ -2,9 +2,14 @@ package schedule;
 
 import java.util.Collection;
 
-import lombok.Data;
-
-@Data
 public class ScheduleAccesser {
-	private Collection<ScheduleOwner> scheduleOwners;
+	private static Collection<ScheduleOwner> scheduleOwners;
+
+	public synchronized static Collection<ScheduleOwner> getScheduleOwners() {
+		return scheduleOwners;
+	}
+
+	public synchronized static void setScheduleOwners(Collection<ScheduleOwner> scheduleOwners) {
+		ScheduleAccesser.scheduleOwners = scheduleOwners;
+	}
 }
