@@ -13,7 +13,7 @@ public class ScheduleManagerTest {
 	ScheduleManager sut = new ScheduleManager();
 
 	@Test
-	public void test() {
+	public void testCreateTemporaryFreeTime() {
 		LocalDate from = LocalDate.parse("2017-03-01");
 		LocalDate to = LocalDate.parse("2017-03-03");
 		Collection<Schedule> actual = sut.createTemporaryFreeTime(from, to);
@@ -27,8 +27,6 @@ public class ScheduleManagerTest {
 			.doesNotContain(
 				new Schedule(LocalDateTime.of(2017, 3, 1, 8, 30), LocalDateTime.of(2017, 3, 1, 9, 00)),
 				new Schedule(LocalDateTime.of(2017, 3, 3, 17, 30), LocalDateTime.of(2017, 3, 3, 18, 00)));
-
-		System.out.println(actual);
 	}
 
 }
