@@ -34,7 +34,7 @@ public class ScheduleManager {
 	}
 
 	private Collection<ScheduleOwner> getScheduleOwners() {
-		throw new UnsupportedOperationException("未実装");
+		return new ScheduleAccesser().getScheduleOwners();
 	}
 
 	Collection<Schedule> createTemporaryFreeTime(LocalDate from, LocalDate to) {
