@@ -2,7 +2,6 @@ package schedule;
 
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -16,12 +15,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Schedule {
-	@JsonProperty("start")
 	@JsonSerialize(using = MyLocalDateTimeSerializer.class)
 	@JsonDeserialize(using = MyLocalDateTimeDeserializer.class)
 	private LocalDateTime start;
 
-	@JsonProperty("end")
 	@JsonSerialize(using = MyLocalDateTimeSerializer.class)
 	@JsonDeserialize(using = MyLocalDateTimeDeserializer.class)
 	private LocalDateTime end;
