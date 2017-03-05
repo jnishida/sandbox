@@ -1,5 +1,7 @@
 package schedule;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -13,12 +15,17 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class ScheduleTest {
 
 	@Test
-	public void test() throws Exception {
+	public void 相互変換できること() throws Exception {
 		List<ScheduleOwner> owners = owners();
 		ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 		File parent = new File("src/test/resources");
-		mapper.writeValue(new File(parent, "test1.json"), owners);
-		System.out.println(owners);
+		File src = new File(parent, "test1.json");
+
+		String actual = mapper.writeValueAsString(owners);
+
+		String expected = mapper.writeValueAsString(mapper.readValue(src, List.class));
+
+		assertThat(actual).isEqualTo(expected);
 	}
 
 	private List<ScheduleOwner> owners() {
