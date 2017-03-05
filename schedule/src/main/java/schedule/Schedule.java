@@ -1,5 +1,6 @@
 package schedule;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -22,4 +23,12 @@ public class Schedule {
 	@JsonSerialize(using = MyLocalDateTimeSerializer.class)
 	@JsonDeserialize(using = MyLocalDateTimeDeserializer.class)
 	private LocalDateTime end;
+
+	public Duration getDuration() {
+		return Duration.between(start, end);
+	}
+	
+	public long getDrationMinutes() {
+		return getDuration().toMinutes();
+	}
 }

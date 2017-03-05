@@ -27,7 +27,9 @@ public class ScheduleManager {
 		Collection<Schedule> schedules = new HashSet<Schedule>();
 		for (ScheduleOwner scheduleOwner : getScheduleOwners()) {
 			for (Schedule schedule: scheduleOwner.getScheduleList()) {
+				if (schedule.getDrationMinutes() === MINITES_OF_UNIT) {
 				schedules.add(schedule);
+				}
 			}
 		}
 		return schedules;
