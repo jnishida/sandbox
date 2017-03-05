@@ -28,5 +28,4 @@ public class ScheduleManagerTest {
 				new Schedule(LocalDateTime.of(2017, 3, 1, 8, 30), LocalDateTime.of(2017, 3, 1, 9, 00)),
 				new Schedule(LocalDateTime.of(2017, 3, 3, 17, 30), LocalDateTime.of(2017, 3, 3, 18, 00)));
 	}
-
 }
